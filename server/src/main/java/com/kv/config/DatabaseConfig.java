@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @ConfigurationProperties
-@EnableMongoRepositories("com.kv.repositorie")
+@EnableMongoRepositories("com.kv.repository")
 @Import(value = MongoAutoConfiguration.class)
-public class DatabaseConfiguration {
+public class DatabaseConfig {
 }

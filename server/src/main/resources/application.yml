@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8080
 spring:
   application:
     name: springboot-mongo-angular
@@ -9,6 +9,8 @@ spring:
       port: 27017
       database: spring_mongo
       grid-fs-database: images
+      repositories:
+        type: auto
 
 logging:
   level:

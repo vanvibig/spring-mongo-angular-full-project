@@ -1,4 +1,4 @@
-package com.kv.repositorie;
+package com.kv.repository;
 
 import com.kv.model.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
