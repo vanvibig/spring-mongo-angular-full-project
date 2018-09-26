@@ -6,25 +6,21 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.Set;
 
 @Data
-@Document(collection = "user")
-public class User implements Serializable {
+@Document(collection = "product_promo")
+public class ProductPromo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     private String id;
 
-    private String email;
-
-    private String password;
-
-    private String fullname;
-
-    private boolean enabled;
+    @DBRef
+    private Product product;
 
     @DBRef
-    private Set<Role> roles;
+    private Promo promo;
+
+    private double discount;
 }
