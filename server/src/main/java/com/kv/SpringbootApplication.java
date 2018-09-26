@@ -1,20 +1,28 @@
 package com.kv;
 
-import com.kv.model.Customer;
+import com.kv.model.Role;
+import com.kv.model.User;
 import com.kv.repository.CustomerRepository;
+import com.kv.repository.RoleRepository;
+import com.kv.repository.UserRepository;
+import com.kv.service.CustomUserDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-public class SpringbootApplication implements CommandLineRunner {
+public class SpringbootApplication {
 
     @Autowired
     public CustomerRepository repository;
+
+    @Autowired
+    public CustomUserDetailService customUserDetailService;
 
     private static final Logger log = LoggerFactory.getLogger(SpringbootApplication.class);
 
@@ -38,33 +46,30 @@ public class SpringbootApplication implements CommandLineRunner {
         );
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+    @Bean
+    CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository) {
 
-//        repository.deleteAll();
-//
-//        // save a couple of customers
-//        repository.save(new Customer("Alice", "Smith"));
-//        repository.save(new Customer("Bob", "Smith"));
-//
-//        // fetch all customers
-//        System.out.println("Customers found with findAll():");
-//        System.out.println("-------------------------------");
-//        for (Customer customer : repository.findAll()) {
-//            System.out.println(customer);
-//        }
-//        System.out.println();
-//
-//        // fetch an individual customer
-//        System.out.println("Customer found with findByFirstName('Alice'):");
-//        System.out.println("--------------------------------");
-//        System.out.println(repository.findByFirstName("Alice"));
-//
-//        System.out.println("Customers found with findByLastName('Smith'):");
-//        System.out.println("--------------------------------");
-//        for (Customer customer : repository.findByLastName("Smith")) {
-//            System.out.println(customer);
-//        }
+        return args -> {
 
+            if( roleRepository.findAll().size() == 0) {
+                Role newAdminRole = new Role();
+                newAdminRole.setRole("ADMIN");
+                roleRepository.save(newAdminRole);
+
+
+                Role newUserRole = new Role();
+                newUserRole.setRole("USER");
+                roleRepository.save(newUserRole);
+            }
+
+            if (userRepository.findAll().size() == 0) {
+                User user = new User();
+                user.setEmail("vanvibig@gmail.com");
+                user.setEnabled(true);
+                user.setPassword("1319");
+                user.setFullname("Kudo Vi");
+                customUserDetailService.saveUser(user);
+            }
+        };
     }
 }
