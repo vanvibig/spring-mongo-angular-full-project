@@ -46,30 +46,30 @@ public class SpringbootApplication {
         );
     }
 
-    @Bean
-    CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository) {
-
-        return args -> {
-
-            if( roleRepository.findAll().size() == 0) {
-                Role newAdminRole = new Role();
-                newAdminRole.setRole("ADMIN");
-                roleRepository.save(newAdminRole);
-
-
-                Role newUserRole = new Role();
-                newUserRole.setRole("USER");
-                roleRepository.save(newUserRole);
-            }
-
-            if (userRepository.findAll().size() == 0) {
-                User user = new User();
-                user.setEmail("vanvibig@gmail.com");
-                user.setEnabled(true);
-                user.setPassword("1319");
-                user.setFullname("Kudo Vi");
-                customUserDetailService.saveUser(user);
-            }
-        };
-    }
+//    @Bean
+//    CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository) {
+//
+//        return args -> {
+//
+//            if( roleRepository.findAll().size() == 0) {
+//                Role newAdminRole = new Role();
+//                newAdminRole.setRole("ADMIN");
+//                roleRepository.save(newAdminRole);
+//
+//
+//                Role newUserRole = new Role();
+//                newUserRole.setRole("USER");
+//                roleRepository.save(newUserRole);
+//            }
+//
+//            if (userRepository.findAll().size() == 0) {
+//                User user = new User();
+//                user.setEmail("vanvibig@gmail.com");
+//                user.setEnabled(true);
+//                user.setPassword("1319");
+//                user.setFullname("Kudo Vi");
+//                customUserDetailService.saveUser(user);
+//            }
+//        };
+//    }
 }
