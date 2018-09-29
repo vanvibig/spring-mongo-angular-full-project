@@ -11,6 +11,8 @@ spring:
       grid-fs-database: images
       repositories:
         type: auto
+  mvc:
+    static-path-pattern: /resources/**
 
 logging:
   level:

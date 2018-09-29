@@ -1,6 +1,6 @@
 package com.kv.jwt;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class AccountCredentials {

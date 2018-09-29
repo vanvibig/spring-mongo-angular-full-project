@@ -4,18 +4,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kv</groupId>
-    <artifactId>server</artifactId>
+    <artifactId>springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>server</name>
-    <description>Spring Boot anuglar</description>
+    <name>springboot</name>
+    <description>Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.5.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
@@ -94,14 +93,52 @@
         </dependency>
     </dependencies>
 
+    <!--<build>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
+    <!--</build>-->
+    <!--<build>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<artifactId>maven-resources-plugin</artifactId>-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<id>copy-resources</id>-->
+    <!--<phase>validate</phase>-->
+    <!--<goals><goal>copy-resources</goal></goals>-->
+    <!--<configuration>-->
+    <!--<outputDirectory>${basedir}/target/classes/static/</outputDirectory>-->
+    <!--<resources>-->
+    <!--<resource>-->
+    <!--<directory>>${basedir}/../client/dist</directory>-->
+    <!--</resource>-->
+    <!--</resources>-->
+    <!--</configuration>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
+    <!--</build>-->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>../client/dist</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-
 </project>
